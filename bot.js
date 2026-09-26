@@ -127,4 +127,6 @@ http.createServer((req, res) => {
   send({ ok: true, service: 'roblox-verify-bot' });
 }).listen(PORT, () => console.log(`Servidor local en http://localhost:${PORT}`));
 
-client.login(TOKEN).catch(err => console.error('LOGIN ERROR:', err.message));
+console.log("TOKEN check:", TOKEN ? ("empieza con " + TOKEN.substring(0, 6) + " y mide " + TOKEN.length) : "VACIO/UNDEFINED");
+console.log("CLIENT_ID:", CLIENT_ID, "| GUILD_ID:", GUILD_ID);
+client.login(TOKEN).then(() => console.log("Login OK")).catch(err => console.error('LOGIN ERROR:', err.message));
