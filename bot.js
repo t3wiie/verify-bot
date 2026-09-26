@@ -20,10 +20,9 @@ const code5 = () => { const c = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; let s = ""; 
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildModeration] });
 
-client.once('clientReady', async () => {
+client.once('ready', async () => {
   console.log(`Bot conectado como ${client.user.tag}`);
 
-  // Sincronizar baneos ya existentes del server
   try {
     const guild = await client.guilds.fetch(GUILD_ID);
     const bans = await guild.bans.fetch();
@@ -53,7 +52,6 @@ client.once('clientReady', async () => {
   } catch (e) { console.error('Error registrando comandos:', e.message); }
 });
 
-// Baneo automatico del juego cuando banean del server
 client.on('guildBanAdd', async (ban) => {
   if (ban.guild.id !== GUILD_ID) return;
   const uname = ban.user.username.toLowerCase();
@@ -129,4 +127,4 @@ http.createServer((req, res) => {
   send({ ok: true, service: 'roblox-verify-bot' });
 }).listen(PORT, () => console.log(`Servidor local en http://localhost:${PORT}`));
 
-client.login(TOKEN);
+client.login(TOKEN).catch(err => console.error('LOGIN ERROR:', err.message));
