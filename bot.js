@@ -2,10 +2,10 @@ const { Client, GatewayIntentBits, REST, Routes, SlashCommandBuilder, MessageFla
 const http = require('http');
 const fs = require('fs');
 
-// ===== CONFIG =====
-const TOKEN = process.env.TOKEN;
-const CLIENT_ID = process.env.CLIENT_ID;
-const GUILD_ID = process.env.GUILD_ID;
+// ===== CONFIG (prueba en PC) =====
+const TOKEN = "MTU1MzI5MzYyMzYxMTYyOTYxMA.GQljGX.BXgDriUuTbiROK1NGyzLQEijgxFOtS7xqmcDS8";
+const CLIENT_ID = "1553293623611629610";
+const GUILD_ID = "1548118798840897558";
 const PORT = process.env.PORT || 3000;
 // ==========================
 
@@ -127,4 +127,6 @@ http.createServer((req, res) => {
   send({ ok: true, service: 'roblox-verify-bot' });
 }).listen(PORT, () => console.log(`Servidor local en http://localhost:${PORT}`));
 
+console.log("TOKEN check:", TOKEN ? ("empieza con " + TOKEN.substring(0, 6) + " y mide " + TOKEN.length) : "VACIO/UNDEFINED");
+console.log("CLIENT_ID:", CLIENT_ID, "| GUILD_ID:", GUILD_ID);
 client.login(TOKEN).then(() => console.log("Login OK")).catch(err => console.error('LOGIN ERROR:', err.message));
